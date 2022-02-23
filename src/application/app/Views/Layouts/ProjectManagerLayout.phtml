@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="icon" href="data:,">
+    <?php /** @var array $assigns */
+    if ($assigns['css-files'] !== null):
+        foreach ($assigns['css-files'] as $cssFile): ?>
+            <link rel="stylesheet" href="<?= $cssFile ?>">
+        <?php endforeach; endif; ?>
+    <?php if ($assigns['js-files'] !== null):
+        foreach ($assigns['js-files'] as $jsFile):?>
+            <script type="module" src="<?= $jsFile ?>"></script>
+        <?php endforeach; endif; ?>
+    <?php if (isset($assigns['scripts'])):
+        foreach ($assigns['scripts'] as $script):?>
+            <script type="module" src="<?= $script ?>"></script>
+        <?php endforeach; endif; ?>
+    <title>Projekt Manager</title>
+</head>
+<body>
+<?= $assigns['content']; ?>
+</body>
+</html>
