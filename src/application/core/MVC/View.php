@@ -115,11 +115,6 @@ class View {
  */
 function doRendering(array $assigns, array $views, string $layoutViewPath): string {
     $assigns['content'] = '';
-    if (isset($assigns['header'])) {
-        ob_start();
-        require $assigns['header'];
-        $assigns['header'] = ob_get_clean();
-    }
     foreach ($views as $view) {
         ob_start();
         require $view;

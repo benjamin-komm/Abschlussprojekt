@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin: 50px auto;
+    font-size: 36px;
+    color: #E8E8E8;
+}
+
+.redirect_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.redirect_container > a {
+    margin: 0 auto;
+    border: 3px solid #E8E8E8;
+    padding: 14px;
+    font-size: 28px;
+    color: #E8E8E8;
+    text-decoration: none;
+}
+
+.redirect_employees {
+    margin: 0 auto 20px !important;
+}
+
+
