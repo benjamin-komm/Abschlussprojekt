@@ -1,0 +1,26 @@
+<a class="cancel_link" href="http://127.0.0.1/employees/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Mitarbeiter hinzufügen</div>
+    <?php if (!$assigns['uploaded']): ?>
+        <form id="add_employee_form">
+            <label for="form_firstname">Vorname:</label>
+            <input id="form_firstname" name="firstname" type="text">
+            <label for="form_lastname">Nachname:</label>
+            <input id="form_lastname" name="lastname" type="text">
+            <label for="form_job">Beruf:</label>
+            <select name="job" id="form_job" form="add_employee_form">
+                <?php foreach ($assigns['jobs'] as $job): ?>
+                    <option value="<?= $job['job_id'] ?>"><?= $job['job_name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="submit">
+        </form>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/confirm.svg">
+            <div>Der Mitarbeiter wurde erfolgreich angelegt.</div>
+        </div>
+    <?php endif; ?>
+</div>

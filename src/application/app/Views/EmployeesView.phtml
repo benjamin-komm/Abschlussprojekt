@@ -1,0 +1,34 @@
+<a class="homepage_link" href="http://127.0.0.1/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Mitarbeiter</div>
+    <a class="add_employee" href="/employees/add-employee/">Mitarbeiter hinzufügen</a>
+    <div class="filter_container">
+        <input class="filter_name" type="text" placeholder="Name des Mitarbeiters">
+        <select class="filter_job">
+            <option value="0">Alle Berufe</option>
+            <?php foreach ($assigns['jobs'] as $job): ?>
+                <option value="<?=$job['job_id']?>"><?=$job['job_name']?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="list_container">
+        <?php
+        if ($assigns['employeeList'] !== null):
+        foreach ($assigns['employeeList'] as $employee): ?>
+            <div>
+                <a href="/employees/member/?employeeID=<?= $employee['employee_id'] ?>">
+                    <?= $employee['employee_firstname'] ?> <?= $employee['employee_lastname'] ?>
+                </a>
+                <img src="/src/public/assets/images/blank_profile.svg">
+                <a href="/employees/member/?employeeID=<?= $employee['employee_id'] ?>">
+                    <?= $employee['employee_job_name'] ?>
+                </a>
+            </div>
+        <?php endforeach;
+        else: ?>
+        <h1>Keine Mitarbeiter vorhanden.</h1>
+        <?php endif;?>
+    </div>
+</div>
