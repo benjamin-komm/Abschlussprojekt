@@ -1,34 +1,39 @@
-<a class="homepage_link" href="http://127.0.0.1/">
+<a class="homepage_link" href="/">
     <img src="/src/public/assets/images/circle_left.svg">
 </a>
 <div class="container">
     <div class="title">Mitarbeiter</div>
     <a class="add_employee" href="/employees/add-employee/">Mitarbeiter hinzufügen</a>
-    <div class="filter_container">
-        <input class="filter_name" type="text" placeholder="Name des Mitarbeiters">
-        <select class="filter_job">
-            <option value="0">Alle Berufe</option>
-            <?php foreach ($assigns['jobs'] as $job): ?>
-                <option value="<?=$job['job_id']?>"><?=$job['job_name']?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-    <div class="list_container">
+    <div class="table">
+        <div class="table_filter_row">
+            <input class="table_filter_firstname" type="text" placeholder="Vorname">
+            <input class="table_filter_lastname" type="text" placeholder="Nachname">
+            <select class="table_filter_job">
+                <option value="0">Alle Berufe</option>
+                <?php foreach ($assigns['jobs'] as $job): ?>
+                    <option value="<?= $job['job_id'] ?>"><?= $job['job_name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="table_column_type_row">
+            <div>Vorname</div>
+            <div>Nachname</div>
+            <div>Beruf</div>
+            <div>Optionen</div>
+        </div>
         <?php
         if ($assigns['employeeList'] !== null):
-        foreach ($assigns['employeeList'] as $employee): ?>
-            <div>
-                <a href="/employees/member/?employeeID=<?= $employee['employee_id'] ?>">
-                    <?= $employee['employee_firstname'] ?> <?= $employee['employee_lastname'] ?>
-                </a>
-                <img src="/src/public/assets/images/blank_profile.svg">
-                <a href="/employees/member/?employeeID=<?= $employee['employee_id'] ?>">
-                    <?= $employee['employee_job_name'] ?>
-                </a>
-            </div>
-        <?php endforeach;
-        else: ?>
-        <h1>Keine Mitarbeiter vorhanden.</h1>
-        <?php endif;?>
+            foreach ($assigns['employeeList'] as $employee): ?>
+                <div class="table_entry" data-job-id="<?= $employee['employee_job_id'] ?>">
+                    <div class="table_entry_firstname"><?= $employee['employee_firstname'] ?></div>
+                    <div class="table_entry_lastname"><?= $employee['employee_lastname'] ?></div>
+                    <div class="table_entry_job_name"><?= $employee['employee_job_name'] ?></div>
+                    <div class="table_entry_options">
+                        <img title="Bearbeiten" src="/src/public/assets/images/edit-round.svg">
+                        <img title="Löschen" src="/src/public/assets/images/cancel.svg">
+                    </div>
+                </div>
+            <?php endforeach;
+        endif; ?>
     </div>
 </div>
