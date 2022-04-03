@@ -1,0 +1,38 @@
+<a class="cancel_link" href="/employees/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Mitarbeiter bearbeiten</div>
+    <?php if ($assigns['foundEmployee']): ?>
+        <?php if (!$assigns['uploaded']): ?>
+            <form id="add_employee_form">
+                <input type="hidden" name="employeeID" value="<?= $assigns['employeeData']['employee_id']?>">
+                <label for="form_firstname">Vorname:</label>
+                <input id="form_firstname" name="firstname" type="text" value="<?= $assigns['employeeData']['employee_firstname']?>">
+                <label for="form_lastname">Nachname:</label>
+                <input id="form_lastname" name="lastname" type="text" value="<?= $assigns['employeeData']['employee_lastname']?>">
+                <label for="form_job">Beruf:</label>
+                <select name="job" id="form_job" form="add_employee_form">
+                    <?php foreach ($assigns['jobs'] as $job): ?>
+                        <?php if ($job['job_id'] == $assigns['employeeData']['employee_job_id']): ?>
+                            <option selected="selected" value="<?= $job['job_id'] ?>"><?= $job['job_name'] ?></option>
+                        <?php else: ?>
+                            <option value="<?= $job['job_id'] ?>"><?= $job['job_name'] ?></option>
+                        <?php endif;?>
+                    <?php endforeach; ?>
+                </select>
+                <input type="submit">
+            </form>
+        <?php else: ?>
+            <div class="upload_result_container">
+                <img src="/src/public/assets/images/confirm.svg">
+                <div>Der Mitarbeiter wurde erfolgreich aktualisiert.</div>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/cancel.svg">
+            <div>Der Mitarbeiter wurde nicht gefunden.</div>
+        </div>
+    <?php endif; ?>
+</div>

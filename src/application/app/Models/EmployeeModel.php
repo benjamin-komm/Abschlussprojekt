@@ -21,6 +21,28 @@ class EmployeeModel extends Model {
     }
 
     /**
+     * Get employee by id
+     * @param int $employeeID
+     * @return array|null
+     */
+    public function getEmployee(int $employeeID): ?array {
+        $response = $this->query('SELECT * FROM ' . $this->table . ' WHERE employee_id = ' . $employeeID . ';');
+        return empty($response) ? null : $response[0];
+    }
+
+    /**
+     * edit the data from a specific employee
+     * @param int $employeeID
+     * @param string $firstname
+     * @param string $lastname
+     * @param int $jobID
+     * @return void
+     */
+    public function editEmployee(int $employeeID, string $firstname, string $lastname, int $jobID) {
+        $this->query('UPDATE ' . $this->table . ' SET employee_firstname = "' . $firstname . '", employee_lastname = "' . $lastname . '", employee_job_id = ' . $jobID . ' WHERE employee_id = ' . $employeeID . ';');
+    }
+
+    /**
      * get all employees
      * @return array|null
      */

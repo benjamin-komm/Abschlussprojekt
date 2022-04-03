@@ -52,8 +52,39 @@ class EmployeesController extends FrontController {
         return $this->getView()->render();
     }
 
+    public function editEmployeeAction() {
+        $firstname = $_GET['firstname'] ?? null;
+        $lastname = $_GET['lastname'] ?? null;
+        $jobID = $_GET['job'] ?? null;
+        $employeeID = $_GET['employeeID'] ?? null;
+        $foundEmployee = false;
+        $uploaded = false;
+        $employeeModel = new EmployeeModel($this->getConfig());
+
+        if ($employeeID != null && (int)$employeeID != 0 && $employeeModel->getEmployee((int)$employeeID) != null) {
+            $foundEmployee = true;
+            $this->getView()->assign('employeeData', $employeeModel->getEmployee((int)$employeeID));
+        }
+
+        if ($firstname !== null && $lastname !== null && $jobID !== null && (int)$jobID !== 0 && $foundEmployee) {
+            $employeeModel = new EmployeeModel($this->getConfig());
+            $employeeModel->editEmployee((int)$employeeID, $firstname, $lastname, (int)$jobID);
+            $uploaded = true;
+        }
+
+        $jobModel = new JobModel($this->getConfig());
+        $jobs = $jobModel->getAllJobs();
+
+        $this->getView()->assign('jobs', $jobs);
+        $this->getView()->assign('uploaded', $uploaded);
+        $this->getView()->assign('foundEmployee', $foundEmployee);
+
+        $this->getView()->addView('EditEmployeeView.phtml');
+        return $this->getView()->render();
+    }
+
     /**
-     * find job name by job id. Doing this with php is maybe better for perfomance with a high ammount of employees
+     * find job name by job id. Doing this with php is maybe better for performance with a high amount of employees
      * @param array $jobs
      * @param int $jobID
      * @return string|null
