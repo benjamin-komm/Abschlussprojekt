@@ -1,0 +1,27 @@
+<a class="cancel_link" href="/employees/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Mitarbeiter bearbeiten</div>
+    <?php if ($assigns['foundEmployee']): ?>
+        <?php if (!$assigns['deleteConfirm']): ?>
+            <form id="add_employee_form">
+                <input type="hidden" name="employeeID" value="<?= $assigns['employeeData']['employee_id']?>">
+                <input type="hidden" name="delete_confirm" value="false">
+                <div>Soll der folgender Mitarbeite wirklich gelöscht werden:</div>
+                <div class="form_employee_name"><?=$assigns['employeeData']['employee_firstname']?> <?=$assigns['employeeData']['employee_lastname']?></div>
+                <input type="submit" value="Bestätigen">
+            </form>
+        <?php else: ?>
+            <div class="upload_result_container">
+                <img src="/src/public/assets/images/confirm.svg">
+                <div>Der Mitarbeiter wurde erfolgreich gelöscht.</div>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/cancel.svg">
+            <div>Der Mitarbeiter wurde nicht gefunden.</div>
+        </div>
+    <?php endif; ?>
+</div>

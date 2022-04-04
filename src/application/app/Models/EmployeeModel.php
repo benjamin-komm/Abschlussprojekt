@@ -31,6 +31,15 @@ class EmployeeModel extends Model {
     }
 
     /**
+     * Delete employee by id
+     * @param int $employeeID
+     * @return void
+     */
+    public function deleteEmployee(int $employeeID) {
+        $this->query('DELETE FROM ' . $this->table . ' WHERE employee_id = ' . $employeeID . ';');
+    }
+
+    /**
      * edit the data from a specific employee
      * @param int $employeeID
      * @param string $firstname

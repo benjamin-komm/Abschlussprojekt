@@ -29,8 +29,8 @@
                     <div class="table_entry_lastname"><?= $employee['employee_lastname'] ?></div>
                     <div class="table_entry_job_name"><?= $employee['employee_job_name'] ?></div>
                     <div class="table_entry_options">
-                        <img title="Bearbeiten" src="/src/public/assets/images/edit-round.svg">
-                        <img title="Löschen" src="/src/public/assets/images/cancel.svg">
+                        <img title="Bearbeiten" src="/src/public/assets/images/edit-round.svg" onclick="javascript:window.location='/employees/edit-employee/?employeeID=<?=$employee['employee_id']?>';">
+                        <img title="Löschen" src="/src/public/assets/images/cancel.svg" onclick="javascript:window.location='/employees/delete-employee/?employeeID=<?=$employee['employee_id']?>';">
                     </div>
                 </div>
             <?php endforeach;

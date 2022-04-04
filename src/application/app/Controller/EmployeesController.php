@@ -83,6 +83,31 @@ class EmployeesController extends FrontController {
         return $this->getView()->render();
     }
 
+    public function deleteEmployeeAction() {
+        $foundEmployee = false;
+        $uploaded = false;
+        $employeeID = $_GET['employeeID'] ?? null;
+        $deleteConfirm = $_GET['delete_confirm'] ?? null;
+        $employeeModel = new EmployeeModel($this->getConfig());
+
+        if ($employeeID != null && (int)$employeeID != 0 && $employeeModel->getEmployee((int)$employeeID) != null) {
+            $foundEmployee = true;
+            $this->getView()->assign('employeeData', $employeeModel->getEmployee((int)$employeeID));
+        }
+
+        if ($deleteConfirm !== null && $deleteConfirm == "true") {
+            $deleteConfirm = true;
+            $employeeModel->deleteEmployee((int)$employeeID);
+        } else {
+            $deleteConfirm = false;
+        }
+
+        $this->getView()->assign('deleteConfirm', $deleteConfirm);
+        $this->getView()->assign('foundEmployee', $foundEmployee);
+        $this->getView()->addView('DeleteEmployeeView.phtml');
+        return $this->getView()->render();
+    }
+
     /**
      * find job name by job id. Doing this with php is maybe better for performance with a high amount of employees
      * @param array $jobs
