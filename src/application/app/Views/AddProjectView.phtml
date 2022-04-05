@@ -1,0 +1,20 @@
+<a class="cancel_link" href="/projects/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Projekt erstellen</div>
+    <?php if (!$assigns['uploaded']): ?>
+        <form id="add_employee_form">
+            <label for="form_projectname">Projektname:</label>
+            <input id="form_projectname" name="projectname" type="text">
+            <label for="form_description">Beschreibung:</label>
+            <input id="form_description" name="description" type="text">
+            <input type="submit">
+        </form>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/confirm.svg">
+            <div>Das Projekt wurde erfolgreich erstellt.</div>
+        </div>
+    <?php endif; ?>
+</div>

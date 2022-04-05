@@ -85,7 +85,6 @@ class EmployeesController extends FrontController {
 
     public function deleteEmployeeAction() {
         $foundEmployee = false;
-        $uploaded = false;
         $employeeID = $_GET['employeeID'] ?? null;
         $deleteConfirm = $_GET['delete_confirm'] ?? null;
         $employeeModel = new EmployeeModel($this->getConfig());

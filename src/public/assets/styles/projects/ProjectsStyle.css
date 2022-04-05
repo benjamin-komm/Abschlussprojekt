@@ -8,13 +8,13 @@
     flex-direction: column;
 }
 
-.title {
+.headline {
     margin: -25px auto 25px;
     font-size: 36px;
     color: #E8E8E8;
 }
 
-.add_employee {
+.container > a {
     width: 200px;
     height: 35px;
     background-color: transparent;
@@ -42,67 +42,45 @@
     border-bottom-style: solid;
 }
 
-.table_filter_row {
-    display: flex;
-    flex-wrap: wrap;
-    height: 40px;
-}
-
-.table_filter_row > input {
-    min-width: 80px;
-    width: 20%;
-    max-width: 400px;
-    height: 15px;
-    margin: auto;
-    background-color: transparent;
-    color: #e8e8e8;
-    border: 2px none #e8e8e8;
-    border-bottom-style: solid;
-    font-size: 15px;
-}
-
-.table_filter_row > input:focus-visible {
-    outline: none;
-}
-
-.table_filter_row > select {
-    background: transparent;
-    border: 2px solid #FFF;
-    width: 105px;
-    height: 30px;
-    margin: auto;
-    font-size: 14px;
-    color: #FFF;
-    cursor: pointer;
-}
-
-.table_column_type_row {
+.table_columns {
     display: flex;
 }
 
-.table_column_type_row > div{
+.table_columns > div {
     width: 25%;
     text-align: center;
     font-size: 17px;
 }
 
-.table_entry {
+.table_column_progress {
+    width: 50% !important;
+}
+
+.table_row {
     display: flex;
     flex-direction: row;
     border-bottom: none !important;
 }
 
-.table_entry > div {
-    width: 25%;
+.table_row > div {
     text-align: center;
-    word-wrap: break-word;
 }
 
-.table_entry_options > img {
+.table_row_projectname,
+.table_row_options {
+    width: 25%;
+}
+
+.table_row_progress {
+    width: 40%;
+    margin: 0 5%;
+}
+
+.table_row_options > img {
     width: 20px;
     cursor: pointer;
 }
 
-.table_entry_options > img:first-child {
+.table_row_options > img:first-child {
     filter: invert(100%) sepia(0%) saturate(2700%) hue-rotate(225deg) brightness(116%) contrast(82%);
 }

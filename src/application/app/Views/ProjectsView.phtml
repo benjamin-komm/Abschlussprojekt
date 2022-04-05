@@ -1,1 +1,28 @@
-Projekte
+<a class="homepage_link" href="/">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="headline">Projekte</div>
+    <a href="/projects/add-project/">Neues Projekt erstellen</a>
+    <div class="table">
+        <div class="table_columns">
+            <div class="table_column_projectname">Projektname</div>
+            <div class="table_column_progress">Fortschritt</div>
+            <div class="table_column_options">Optionen</div>
+        </div>
+        <div class="table_rows">
+            <?php if ($assigns['projects'] !== null):
+                foreach ($assigns['projects'] as $project): ?>
+                    <div class="table_row">
+                        <div class="table_row_projectname"><?=$project['project_name']?></div>
+                        <progress value="<?=$project['completedTasks']?>" max="<?=$project['totalTasks']?>" class="table_row_progress"></progress>
+                        <div class="table_row_options">
+                            <img title="Bearbeiten" src="/src/public/assets/images/edit-round.svg" onclick="javascript:window.location='/projects/edit-project?projectID=<?=$project['project_id']?>';">
+                            <img title="Löschen" src="/src/public/assets/images/cancel.svg" onclick="javascript:window.location='/projects/delete-project/?projectID=<?=$project['project_id']?>';">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
