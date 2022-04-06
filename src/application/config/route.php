@@ -28,5 +28,9 @@ $map = [
         'action'        => 'addProjectTaskAction'
     ],
     '/login/'                       => \app\Controller\LoginController::class,
+    '/logout/'                      => [
+        'controller'    => \app\Controller\LoginController::class,
+        'action'        => 'logoutAction'
+    ],
     '/projects/'                    => \app\Controller\ProjectsController::class,
 ];

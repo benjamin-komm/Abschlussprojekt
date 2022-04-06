@@ -13,7 +13,7 @@ class LoginController extends FrontController {
         $userModel = new UserModel($this->getConfig());
         $loginResponse = false;
 
-        if ($_SESSION['user'] !== null) {
+        if (array_key_exists('user', $_SESSION)) {
             $loginResponse = 'alreadyLoggedIn';
         } else {
             if ($user !== null && $password !== null && $userModel->getUser($user, $password) !== null) {
@@ -30,6 +30,15 @@ class LoginController extends FrontController {
         $this->getView()->assign('loginResponse', $loginResponse);
         $this->getView()->addView('LoginView.phtml');
         return $this->getView()->render();
+    }
+
+
+    public function logoutAction() {
+        if (array_key_exists('user', $_SESSION)) {
+            unset($_SESSION['user']);
+        }
+        header('Location: /', true, 302);
+
     }
 
 }
