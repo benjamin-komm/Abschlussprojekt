@@ -23,7 +23,7 @@
     text-decoration: none;
 }
 
-.redirect_employees {
+.redirect_container > a:not(:last-child) {
     margin: 0 auto 20px !important;
 }
 

@@ -1,0 +1,30 @@
+<div class="container">
+    <a class="cancel_link" href="/">
+        <img src="/src/public/assets/images/circle_left.svg">
+    </a>
+    <?php if ($assigns['loginResponse'] == 'alreadyLoggedIn'): ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/red-x-line.svg">
+            <div>Du bist bereits angemeldet.</div>
+        </div>
+    <?php else: ?>
+    <?php if($assigns['loginResponse'] == 'done'): ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/confirm.svg">
+            <div>Du hast dich erfolgreich eingelogt.</div>
+        </div>
+    <?php else: ?>
+        <div class="headline">Login</div>
+        <form id="login_form">
+            <label for="form_username">User:</label>
+            <input id="form_username" name="user" type="text">
+            <label for="form_password">Passwort:</label>
+            <input id="form_password" name="password" type="password">
+            <input type="submit" value="Login">
+        </form>
+       <?php if($assigns['loginResponse'] == 'error'): ?>
+            <div class="login_error">Falscher Benutzername oder Passwort.</div>
+        <?php endif; ?>
+    <?php endif; ?>
+    <?php endif; ?>
+</div>

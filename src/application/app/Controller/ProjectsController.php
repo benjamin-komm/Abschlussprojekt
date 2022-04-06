@@ -53,6 +53,8 @@ class ProjectsController extends FrontController {
         $projectID = $_GET['projectID'] ?? null;
         $projectModel = new ProjectModel($this->getConfig());
         $foundProject = false;
+        $completedTasks = 0;
+        $totalTasks = 0;
         $taskModel = new TaskModel($this->getConfig());
 
         if ($projectID != null && (int)$projectID != 0 && $projectModel->getProject((int)$projectID) != null) {
@@ -72,19 +74,19 @@ class ProjectsController extends FrontController {
 
         if ($foundProject && $taskModel->getProjectTasks((int)$projectID)) {
             $tasks = $taskModel->getProjectTasks((int)$projectID);
-            $completedTasks = 0;
             if ($tasks !== null) {
                 foreach ($tasks as $task) {
                     if ($task['task_done'] == 1) $completedTasks++;
                 }
             }
-            $this->getView()->assign('completedTasks', $completedTasks);
-            $this->getView()->assign('totalTasks', ($tasks == null) ? 0 : count($tasks));
+            $totalTasks = ($tasks == null) ? 0 : count($tasks);
             $this->getView()->assign('tasks', $tasks);
         } else {
             $this->getView()->assign('tasks', null);
         }
 
+        $this->getView()->assign('completedTasks', $completedTasks);
+        $this->getView()->assign('totalTasks', $totalTasks);
         $this->getView()->assign('foundProject', $foundProject);
         $this->getView()->addView('ShowProjectView.phtml');
         return $this->getView()->render();

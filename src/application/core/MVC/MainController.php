@@ -14,7 +14,7 @@ class MainController {
     public function start() {
         $this->initialize();
 
-        //TODO run Controller action
+        session_start();
         $this->controller->{$this->getRouter()->getAction()}();
 
         $this->run();
