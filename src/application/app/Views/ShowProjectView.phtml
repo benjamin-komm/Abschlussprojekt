@@ -1,0 +1,56 @@
+<div class="container">
+    <a class="homepage_link" href="/projects/">
+        <img src="/src/public/assets/images/circle_left.svg">
+    </a>
+    <?php if ($assigns['foundProject']): ?>
+        <div class="projectname"><?= $assigns['projectData']['project_name'] ?></div>
+        <div class="description_container">
+            <div>Beschreibung:</div>
+            <div><?= $assigns['projectData']['project_description'] ?></div>
+        </div>
+        <div class="progress_container">
+            <div><?= $assigns['completedTasks'] ?> von <?= $assigns['totalTasks'] ?></div>
+            <progress value="<?= $assigns['completedTasks'] ?>" max="<?= $assigns['totalTasks'] ?>"
+                      class="table_row_progress"></progress>
+        </div>
+        <div class="tasks_table">
+            <div class="tasks_table_columns">
+                <div class="tasks_table_column_status">Status</div>
+                <div class="tasks_table_column_title">Titel</div>
+                <div class="tasks_table_column_options">Optionen</div>
+            </div>
+            <div class="tasks_table_rows">
+                <?php if ($assigns['tasks'] !== null): ?>
+                    <?php foreach ($assigns['tasks'] as $task): ?>
+                        <div class="tasks_table_row">
+                            <div class="tasks_table_row_status">
+                                <?php if ($task['task_done'] == 1): ?>
+                                    <a href="/projects/show-project/?projectID=<?= $assigns['projectData']['project_id'] ?>&taskID=<?= $task['task_id'] ?>&taskAction=unfinished"><img
+                                                src="/src/public/assets/images/green-checkmark-line.svg"></a>
+                                <?php else: ?>
+                                    <a href="/projects/show-project/?projectID=<?= $assigns['projectData']['project_id'] ?>&taskID=<?= $task['task_id'] ?>&taskAction=finished"><img
+                                                src="/src/public/assets/images/red-x-line.svg"></a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="tasks_table_row_title"><?= $task['task_title'] ?></div>
+                            <div class="tasks_table_row_options">
+                                <img title="Bearbeiten" src="/src/public/assets/images/EditBlue.svg"
+                                     onclick="javascript:window.location='/tasks/edit-task/?taskID=<?= $task['task_id'] ?>';">
+                                <img title="Löschen" src="/src/public/assets/images/Remove.svg"
+                                     onclick="javascript:window.location='/tasks/delete-task/?taskID=<?= $task['task_id'] ?>';">
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="tasks_table_row_empty">Keine Tasks vorhanden.</div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <a class="add_task" href="/projects/show-project/add-task/?projectID=<?=$assigns['projectData']['project_id']?>">Aufgabe erstellen</a>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/cancel.svg">
+            <div>Das Projekt wurde nicht gefunden.</div>
+        </div>
+    <?php endif; ?>
+</div>

@@ -14,11 +14,11 @@
             <?php if ($assigns['projects'] !== null):
                 foreach ($assigns['projects'] as $project): ?>
                     <div class="table_row">
-                        <div class="table_row_projectname"><?=$project['project_name']?></div>
+                        <a href="/projects/show-project/?projectID=<?=$project['project_id']?>" class="table_row_projectname"><?=$project['project_name']?></a>
                         <progress value="<?=$project['completedTasks']?>" max="<?=$project['totalTasks']?>" class="table_row_progress"></progress>
                         <div class="table_row_options">
-                            <img title="Bearbeiten" src="/src/public/assets/images/edit-round.svg" onclick="javascript:window.location='/projects/edit-project?projectID=<?=$project['project_id']?>';">
-                            <img title="Löschen" src="/src/public/assets/images/cancel.svg" onclick="javascript:window.location='/projects/delete-project/?projectID=<?=$project['project_id']?>';">
+                            <img title="Bearbeiten" src="/src/public/assets/images/EditBlue.svg" onclick="javascript:window.location='/projects/edit-project/?projectID=<?=$project['project_id']?>';">
+                            <img title="Löschen" src="/src/public/assets/images/Remove.svg" onclick="javascript:window.location='/projects/delete-project/?projectID=<?=$project['project_id']?>';">
                         </div>
                     </div>
                 <?php endforeach; ?>

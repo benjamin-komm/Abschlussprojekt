@@ -19,5 +19,13 @@ $map = [
         'controller'    => \app\Controller\ProjectsController::class,
         'action'        => 'addProjectAction'
     ],
+    "/projects/show-project/"        => [
+        'controller'    => \app\Controller\ProjectsController::class,
+        'action'        => 'showProjectAction'
+    ],
+    "/projects/show-project/add-task/"  => [
+        'controller'    => \app\Controller\ProjectsController::class,
+        'action'        => 'addProjectTaskAction'
+    ],
     '/projects/'                    => \app\Controller\ProjectsController::class,
 ];

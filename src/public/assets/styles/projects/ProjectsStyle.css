@@ -59,11 +59,18 @@
 .table_row {
     display: flex;
     flex-direction: row;
+    margin: 5px 0;
     border-bottom: none !important;
 }
 
 .table_row > div {
     text-align: center;
+}
+
+.table_row_projectname {
+    text-align: center;
+    text-decoration: none;
+    color: #FFF;
 }
 
 .table_row_projectname,

@@ -27,4 +27,14 @@ class ProjectModel extends Model {
         return empty($response) ? null : $response;
     }
 
+    /**
+     * get a single project by project id
+     * @param int $projectID
+     * @return array|null
+     */
+    public function getProject(int $projectID): ?array {
+        $response = $this->query('SELECT * FROM ' . $this->table . ' WHERE project_id = ' . $projectID . ';');
+        return empty($response) ? null : $response[0];
+    }
+
 }

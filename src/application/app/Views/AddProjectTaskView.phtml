@@ -1,0 +1,21 @@
+<a class="cancel_link" href="/projects/show-project/?projectID=<?=$assigns['projectID']?>">
+    <img src="/src/public/assets/images/circle_left.svg">
+</a>
+<div class="container">
+    <div class="title">Aufgabe erstellen</div>
+    <?php if (!$assigns['uploaded']): ?>
+        <form id="add_project_task_form">
+            <input type="hidden" name="projectID" value="<?=$assigns['projectID']?>">
+            <label for="form_task_name">Name:</label>
+            <input id="form_task_name" name="task_name" type="text">
+            <label for="form_task_description">Beschreibung:</label>
+            <input id="form_task_description" name="task_description" type="text">
+            <input type="submit">
+        </form>
+    <?php else: ?>
+        <div class="upload_result_container">
+            <img src="/src/public/assets/images/confirm.svg">
+            <div>Die Aufgabe wurde erfolgreich erstellt.</div>
+        </div>
+    <?php endif; ?>
+</div>
